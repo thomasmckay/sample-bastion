@@ -1,0 +1,20 @@
+<table class="table table-striped" ng-class="{'table-mask': table.working}">
+  <thead>
+    <tr bst-table-head row-select>
+      <th bst-table-column sortable><span translate>Name</span></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr bst-table-row
+        ng-repeat="sample in table.rows"
+        row-select="sample"
+        active-row="stateIncludes('samples.details', {sampleId: sample.id})">
+      <td bst-table-cell>
+        <a ui-sref="samples.details.info({sampleId: sample.id})">
+          {{ sample.name }}
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
