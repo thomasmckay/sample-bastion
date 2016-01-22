@@ -1,6 +1,5 @@
 module SampleBastionPlugin
   class Sample < ActiveRecord::Base
-
     include Authorization::Sample
 
     audited :allow_mass_assignment => true

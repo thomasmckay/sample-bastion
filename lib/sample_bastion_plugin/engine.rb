@@ -4,8 +4,10 @@ module SampleBastionPlugin
   class Engine < ::Rails::Engine
     isolate_namespace SampleBastionPlugin
 
-    initializer 'sample_bastion_plugin.assets_dispatcher', :before => :build_middleware_stack do |app|
-      app.middleware.use ::ActionDispatch::Static, "#{SampleBastionPlugin::Engine.root}/app/assets/javascripts/sample_bastion_plugin"
+    initializer 'sample_bastion_plugin.assets_dispatcher',
+            :before => :build_middleware_stack do |app|
+      app.middleware.use ::ActionDispatch::Static,
+        "#{SampleBastionPlugin::Engine.root}/app/assets/javascripts/sample_bastion_plugin"
     end
 
     initializer 'sample_bastion_plugin.engine', :after => :build_middleware_stack do |app|
@@ -13,7 +15,8 @@ module SampleBastionPlugin
     end
 
     initializer "sample_bastion_plugin.paths" do |app|
-      app.routes_reloader.paths.unshift("#{SampleBastionPlugin::Engine.root}/config/routes/api/v2.rb")
+      app.routes_reloader.
+        paths.unshift("#{SampleBastionPlugin::Engine.root}/config/routes/api/v2.rb")
     end
 
     initializer "sample_bastion_plugin.assets", :group => :all do |app|
@@ -31,16 +34,20 @@ module SampleBastionPlugin
     end
 
     config.to_prepare do
-      Bastion.register_plugin({
-         :name => 'sample_bastion_plugin',
-         :javascript => 'sample_bastion_plugin/sample_bastion_plugin',
-         :pages => %w(samples)
-       })
+      Bastion.register_plugin(
+        :name => 'sample_bastion_plugin',
+        :javascript => 'sample_bastion_plugin/sample_bastion_plugin',
+        :pages => %w(samples)
+      )
     end
 
     config.after_initialize do
       require 'sample_bastion_plugin/plugin'
       require 'sample_bastion_plugin/permissions'
+    end
+
+    rake_tasks do
+      load "#{SampleBastionPlugin::Engine.root}/lib/sample_bastion_plugin/tasks/rubocop.rake"
     end
   end
 end
