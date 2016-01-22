@@ -7,4 +7,3 @@ require 'sample_bastion_plugin/plugin.rb'
 #   },
 #   :resource_type => 'SampleBastionPlugin::Sample'
 # end
-
