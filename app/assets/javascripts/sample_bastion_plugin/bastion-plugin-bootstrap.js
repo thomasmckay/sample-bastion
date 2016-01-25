@@ -1,3 +1,3 @@
 BASTION_MODULES.push(
-    'SampleBastionPlugin.samples'
+    'SampleBastionPlugin.sample-models'
 );

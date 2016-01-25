@@ -8,15 +8,15 @@
   </thead>
 
   <tbody>
-    <tr bst-table-row ng-repeat="sample in table.rows" row-select="sample">
+    <tr bst-table-row ng-repeat="sampleModel in table.rows" row-select="sampleModel">
       <td bst-table-cell>
-        <a ui-sref="samples.details.info({sampleId: sample.id})">
-          {{ sample.name }}
+        <a ui-sref="sample-models.details.info({sampleModelId: sampleModel.id})">
+          {{ sampleModel.name }}
         </a>
-        <i class="fa fa-chevron-right selected-icon" ng-show="sample.selected"></i>
+        <i class="fa fa-chevron-right selected-icon" ng-show="sampleModel.selected"></i>
       </td>
-      <td bst-table-cell>{{ sample.description }}</td>
-      <td bst-table-cell class="number-cell">{{ sample.number }}</td>
+      <td bst-table-cell>{{ sampleModel.description }}</td>
+      <td bst-table-cell class="number-cell">{{ sampleModel.number }}</td>
     </tr>
   </tbody>
 </table>

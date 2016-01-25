@@ -29,16 +29,19 @@ module SampleBastionPlugin
       app.config.assets.precompile += SETTINGS[:sample_bastion_plugin][:assets][:precompile]
     end
 
+    initializer "katello.apipie" do
+      Apipie.configuration.checksum_path += ['/sample_bastion_plugin/api/']
+      require 'sample_bastion_plugin/apipie/validators'
+    end
+
     initializer "sample_bastion_plugin.load_app_instance_data" do |app|
       app.config.autoload_paths += Dir["#{config.root}/app/lib"]
     end
 
     config.to_prepare do
-      Bastion.register_plugin(
-        :name => 'sample_bastion_plugin',
-        :javascript => 'sample_bastion_plugin/sample_bastion_plugin',
-        :pages => %w(samples)
-      )
+      Bastion.register_plugin(:name => 'sample_bastion_plugin',
+                              :javascript => 'sample_bastion_plugin/sample_bastion_plugin',
+                              :pages => %w(sample_models))
     end
 
     config.after_initialize do

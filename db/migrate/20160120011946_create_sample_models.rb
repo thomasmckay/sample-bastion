@@ -1,6 +1,6 @@
-class CreateSamples < ActiveRecord::Migration
+class CreateSampleModels < ActiveRecord::Migration
   def change
-    create_table :sample_bastion_plugin_samples do |t|
+    create_table :sample_bastion_plugin_sample_models do |t|
       t.string :name
       t.text :description
       t.integer :number

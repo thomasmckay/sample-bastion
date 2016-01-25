@@ -1,0 +1,43 @@
+<span page-title ng-model="sampleModel">{{ 'Details for Sample Model:' | translate }} {{ sampleModel.name }}</span>
+
+<div alert type="'info'">
+  <p translate>
+    Sample Models are not very useful in general. However, any sample model named {{ sampleModel.name }} is!
+  </p>
+</div>
+
+<section>
+  <div class="details pull-left">
+    <section>
+      <div class="detail">
+        <span class="info-label" translate>Name</span>
+        <span class="info-value"
+              bst-edit-text="sampleModel.name"
+              readonly="denied('edit_sample_models', sampleModel)"
+              on-save="save(sampleModel)">
+        </span>
+      </div>
+
+      <div class="detail">
+        <span class="info-label" translate>Description</span>
+        <span class="info-value"
+              bst-edit-textarea="sampleModel.description"
+              readonly="denied('edit_sample_models', sampleModel)"
+              on-save="save(sampleModel)">
+        </span>
+        </div>
+
+      <div class="detail">
+        <span class="info-label" translate>Number</span>
+        <span class="info-value"
+              bst-edit-number="sampleModel.number"
+              readonly="denied('edit_sample_models', sampleModel)"
+              on-save="save(sampleModel)"
+              min="1"
+              max="2147483648"
+              required>
+        </span>
+      </div>
+    </section>
+  </div>
+</section>
