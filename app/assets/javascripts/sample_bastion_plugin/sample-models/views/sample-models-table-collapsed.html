@@ -7,12 +7,12 @@
 
   <tbody>
     <tr bst-table-row
-        ng-repeat="sample in table.rows"
-        row-select="sample"
-        active-row="stateIncludes('samples.details', {sampleId: sample.id})">
+        ng-repeat="sampleModel in table.rows"
+        row-select="sampleModel"
+        active-row="stateIncludes('sampleModels.details', {sampleModelId: sampleModel.id})">
       <td bst-table-cell>
-        <a ui-sref="samples.details.info({sampleId: sample.id})">
-          {{ sample.name }}
+        <a ui-sref="sample-models.details.info({sampleModelId: sampleModel.id})">
+          {{ sampleModel.name }}
         </a>
       </td>
     </tr>

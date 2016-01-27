@@ -1,4 +1,4 @@
-<span page-title ng-model="sample">{{ 'Sample:' | translate }} {{ sample.name }}</span>
+<span page-title ng-model="sampleModel">{{ 'Sample Model:' | translate }} {{ sampleModel.name }}</span>
 
 <div class="loading-mask loading-mask-panel fa-3x" ng-show="panel.loading">
   <i class="fa fa-spinner fa-spin"></i>
@@ -8,30 +8,30 @@
 <section class="nutupane-details" ng-cloak bst-container-scroll>
 
   <header class="details-header">
-    <h2 class="pull-left" translate>Sample: {{ sample.name }}</h2>
+    <h2 class="pull-left" translate>Sample Model: {{ sampleModel.name }}</h2>
 
     <div class="details-actions pull-right">
       <button class="btn btn-default"
-              ng-click="openModal()" ng-hide="denied('destroy_samples', sample)" translate>
+              ng-click="openModal()" ng-hide="denied('destroy_sample_models', sampleModel)" translate>
         Remove
       </button>
 
-      <button class="btn btn-default" ui-sref="samples.index">
+      <button class="btn btn-default" ui-sref="sample-models.index">
         <i class="fa fa-remove"></i>
         {{ "Close" | translate }}
       </button>
 
-      <div bst-modal="removeSample(sample)">
-        <div data-block="modal-header" translate>Remove Sample "{{ sample.name }}"?</div>
-        <div data-block="modal-body" translate>Are you sure you want to remove Sample "{{ sample.name }}"?</div>
+      <div bst-modal="removeSampleModel(sampleModel)">
+        <div data-block="modal-header" translate>Remove Sample Model "{{ sampleModel.name }}"?</div>
+        <div data-block="modal-body" translate>Are you sure you want to remove Sample Model "{{ sampleModel.name }}"?</div>
       </div>
     </div>
   </header>
 
   <nav>
     <ul class="nav nav-tabs">
-      <li ng-class="{active: isState('samples.details.info')}">
-        <a ui-sref="samples.details.info">
+      <li ng-class="{active: isState('sample-models.details.info')}">
+        <a ui-sref="sample-models.details.info">
           <span translate>
             Details
           </span>

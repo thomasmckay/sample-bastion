@@ -1,4 +1,4 @@
-<span page-title>{{ 'New Sample' | translate }}</span>
+<span page-title>{{ 'New Sample Model' | translate }}</span>
 
 <div class="loading-mask loading-mask-panel fa-3x" ng-show="panel.loading">
   <i class="fa fa-spinner fa-spin"></i>
@@ -7,22 +7,22 @@
 
 <section class="nutupane-details" ng-cloak bst-container-scroll>
   <header class="new-header details-header">
-    <h2 class="pull-left" translate>New Sample</h2>
+    <h2 class="pull-left" translate>New Sample Model</h2>
 
     <div class="details-actions pull-right">
-      <button class="btn btn-default" ui-sref="samples.index">
+      <button class="btn btn-default" ui-sref="sample-models.index">
         <i class="fa fa-remove"></i>
         {{ "Close" | translate }}
       </button>
     </div>
   </header>
 
-  <form name="sampleForm" class="form-horizontal" novalidate role="form">
+  <form name="sampleModelForm" class="form-horizontal" novalidate role="form">
 
     <div bst-form-group label="{{ 'Name' | translate }}">
       <input id="name"
              name="name"
-             ng-model="sample.name"
+             ng-model="sampleModel.name"
              type="text"
              tabindex="1"
              autofocus
@@ -32,7 +32,7 @@
     <div bst-form-group label="{{ 'Description' | translate }}">
       <textarea id="description"
                 name="description"
-                ng-model="sample.description"
+                ng-model="sampleModel.description"
                 tabindex="2">
       </textarea>
     </div>
@@ -41,7 +41,7 @@
       <input id="number"
              name="number"
              class="form-control"
-             ng-model="sample.number"
+             ng-model="sampleModel.number"
              required
              type="number"
              min="1"
@@ -50,8 +50,8 @@
     </div>
 
     <div bst-form-buttons
-         on-cancel="transitionTo('samples.index')"
-         on-save="save(sample)"
+         on-cancel="transitionTo('sample-models.index')"
+         on-save="save(sampleModel)"
          working="working">
     </div>
 
