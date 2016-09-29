@@ -4,6 +4,10 @@ module SampleBastionPlugin
   class Engine < ::Rails::Engine
     isolate_namespace SampleBastionPlugin
 
+    initializer 'sample_bastion_plugin.load_default_settings', :before => :load_config_initializers do
+      require_dependency File.expand_path('../../../app/models/setting/sample_bastion_plugin.rb', __FILE__) if (Setting.table_exists? rescue(false))
+    end
+
     initializer 'sample_bastion_plugin.assets_dispatcher',
             :before => :build_middleware_stack do |app|
       app.middleware.use ::ActionDispatch::Static,
@@ -29,14 +33,14 @@ module SampleBastionPlugin
       app.config.assets.precompile += SETTINGS[:sample_bastion_plugin][:assets][:precompile]
     end
 
-    initializer "katello.apipie" do
-      Apipie.configuration.checksum_path += ['/sample_bastion_plugin/api/']
-      require 'sample_bastion_plugin/apipie/validators'
-    end
+    # initializer "katello.apipie" do
+    #   Apipie.configuration.checksum_path += ['/sample_bastion_plugin/api/']
+    #   require 'sample_bastion_plugin/apipie/validators'
+    # end
 
-    initializer "sample_bastion_plugin.load_app_instance_data" do |app|
-      app.config.autoload_paths += Dir["#{config.root}/app/lib"]
-    end
+    # initializer "sample_bastion_plugin.load_app_instance_data" do |app|
+    #   app.config.autoload_paths += Dir["#{config.root}/app/lib"]
+    # end
 
     config.to_prepare do
       Bastion.register_plugin(:name => 'sample_bastion_plugin',
@@ -44,9 +48,15 @@ module SampleBastionPlugin
                               :pages => %w(sample_models))
     end
 
-    config.after_initialize do
+    initializer 'sample_bastion_plugin.register_plugin', :before => :finisher_hook do
       require 'sample_bastion_plugin/plugin'
       require 'sample_bastion_plugin/permissions'
+    end
+
+    initializer 'sample_bastion_plugin.load_app_instance_data' do |app|
+      SampleBastionPlugin::Engine.paths['db/migrate'].existent.each do |path|
+        app.config.paths['db/migrate'] << path
+      end
     end
 
     rake_tasks do
