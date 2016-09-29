@@ -62,7 +62,7 @@ module SampleBastionPlugin
       class IdentifierValidator < ::Apipie::Validator::BaseValidator
         def validate(value)
           value = value.to_s
-          value =~ /\A[\w| |_|-]*\Z/ && value.strip == value && (2..128).include?(value.length)
+          value =~ /\A[\w| |_|-]*\Z/ && value.strip == value && (2..128).cover?(value.length)
         end
 
         def self.build(param_description, argument, _options, _block)

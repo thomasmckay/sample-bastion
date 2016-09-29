@@ -4,8 +4,6 @@ module SampleBastionPlugin
 
     audited :allow_mass_assignment => true
 
-    attr_accessible :name, :description, :number
-
     validates_lengths_from_database
     validates :name, presence: true, uniqueness: true
     validates :number, presence: true, uniqueness: true
